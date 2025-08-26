@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset='utf-8' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>FullCalendar - Bootstrap 5</title>
+  <script defer src="index.js"></script></head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card shadow">
+            <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+              <h4 class="card-title mb-0">Mi Calendario</h4>
+              <button type="button" class="btn btn-light btn-sm" data-bs-toggle="modal" data-bs-target="#createEventModal">
+                <i class="bi bi-plus-circle"></i> Nuevo Evento
+              </button>
+            </div>
+            <div class="card-body p-2 p-md-3">
+              <div id='calendar'></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para crear/editar eventos -->
+    <div class="modal fade" id="createEventModal" tabindex="-1" aria-labelledby="createEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="createEventModalLabel">Nuevo Evento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="eventForm">
+              <div class="mb-3">
+                <label for="eventTitle" class="form-label">Título del evento *</label>
+                <input type="text" class="form-control" id="eventTitle" required placeholder="Ej: Reunión importante">
+              </div>
+              
+              <div class="mb-3">
+                <label for="eventDescription" class="form-label">Descripción</label>
+                <textarea class="form-control" id="eventDescription" rows="3" placeholder="Descripción opcional del evento"></textarea>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="eventStartDate" class="form-label">Fecha inicio *</label>
+                  <input type="date" class="form-control" id="eventStartDate" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="eventStartTime" class="form-label">Hora inicio</label>
+                  <input type="time" class="form-control" id="eventStartTime">
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <label for="eventEndDate" class="form-label">Fecha fin</label>
+                  <input type="date" class="form-control" id="eventEndDate">
+                </div>
+                <div class="col-md-6 mb-3">
+                  <label for="eventEndTime" class="form-label">Hora fin</label>
+                  <input type="time" class="form-control" id="eventEndTime">
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="eventAllDay">
+                  <label class="form-check-label" for="eventAllDay">
+                    Todo el día
+                  </label>
+                </div>
+              </div>
+              
+              <div class="mb-3">
+                <label for="eventColor" class="form-label">Color del evento</label>
+                <select class="form-select" id="eventColor">
+                  <option value="#0d6efd" selected>Azul</option>
+                  <option value="#28a745">Verde</option>
+                  <option value="#dc3545">Rojo</option>
+                  <option value="#ffc107">Amarillo</option>
+                  <option value="#6f42c1">Púrpura</option>
+                  <option value="#fd7e14">Naranja</option>
+                  <option value="#20c997">Turquesa</option>
+                  <option value="#6c757d">Gris</option>
+                </select>
+              </div>
+              
+              <div class="mb-3">
+                <label for="eventURL" class="form-label">URL (opcional)</label>
+                <input type="url" class="form-control" id="eventURL" placeholder="https://ejemplo.com">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="deleteEventBtn" style="display: none;">Eliminar</button>
+            <button type="button" class="btn btn-primary" id="saveEventBtn">Guardar Evento</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para ver detalles del evento -->
+    <div class="modal fade" id="viewEventModal" tabindex="-1" aria-labelledby="viewEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="viewEventModalLabel">Detalles del Evento</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="eventDetailsContent">
+            <!-- Contenido dinámico -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" id="editEventBtn">Editar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
